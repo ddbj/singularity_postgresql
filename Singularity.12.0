@@ -24,7 +24,7 @@ From: ubuntu:18.04
     # install MySQL
     apt-get -y install build-essential make gcc libreadline-dev zlib1g-dev libperl-dev libpython2.7-dev libpython3-dev gettext libssl-dev libxml2-dev libxslt1-dev
     useradd user1
-    chown postgres /usr/local/src
+    chown user1 /usr/local/src
     cd /usr/local/src
     su -c 'wget https://ftp.postgresql.org/pub/source/v12.0/postgresql-12.0.tar.gz' user1
     su -c 'tar xzvf postgresql-12.0.tar.gz' user1
