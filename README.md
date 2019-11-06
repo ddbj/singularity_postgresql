@@ -68,7 +68,7 @@ singularity instanceを起動したユーザーがPostgreSQLデータベース�
 
 ## PostgreSQLデータベースの使用
 
-パスワードの設定によりsingularity instanceの外からデータベースにアクセスできるようになります。
+パスワードの設定によりsingularity instanceの外からデータベースにアクセスできるようになります。アクセスの際は-hオプションでsingularity instanceを実行しているホスト名を指定してください。
 
     $ psql -d postgres -p 55432 -h at043
     パスワード: 
