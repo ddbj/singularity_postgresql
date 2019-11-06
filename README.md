@@ -19,10 +19,11 @@ Singularity Hubに登録されたイメージをダウンロードする場合�
     $ singularity pull --name ubuntu-18.04-postgresql-12.0.simg shub://ddbj/singularity_postgresql:12.0
 
 ## PostgreSQLデータベースの初期化
+
 生成またはダウンロードしたイメージだけではPostgreSQLデータベースを実行できません。 start_container.shを実行してsingularity instanceを起動し、データベースの初期化を行います。シェルスクリプトの実行前に、自分の環境に合わせて start_container.sh の CONTAINER_HOME, IMAGE, INSTANCE, PORT変数を修正してください。シェルスクリプトを実行すると、初回実行時には以下のようにデータベースの初期化が行われた後でデータベースサーバが起動します。
 
     $ bash start_container.sh
-    The files belonging to this database system will be owned by user "y-okuda".
+    The files belonging to this database system will be owned by user "<スクリプトの実行ユーザー>".
     This user must also own the server process.
     
     The database cluster will be initialized with locale "C".
@@ -30,7 +31,7 @@ Singularity Hubに登録されたイメージをダウンロードする場合�
     
     Data page checksums are disabled.
     
-    creating directory /usr/local/pgsql12/data/db_data ... ok
+    fixing permissions on existing directory /usr/local/pgsql12/data ... ok
     creating subdirectories ... ok
     selecting dynamic shared memory implementation ... posix
     selecting default max_connections ... 100
@@ -47,7 +48,20 @@ Singularity Hubに登録されたイメージをダウンロードする場合�
     
     Success. You can now start the database server using:
     
-        pg_ctl -D /usr/local/pgsql12/data/db_data -l logfile start
+        pg_ctl -D /usr/local/pgsql12/data -l logfile start
     
+    Stopping pgsql instance of /gpfs1/lustre2/home/y-okuda/git/singularity_postgresql/ubuntu-18.04-postgresql-12.0.simg (PID=36513)
     waiting for server to start.... done
     server started
+
+## PostgreSQLデータベースのスーパーユーザーのパスワード設定
+
+singularity instanceを起動したユーザーがPostgreSQLデータベースのスーパーユーザーに設定されています。スーパーユーザーのパスワードを設定します。
+
+    $ singularity exec instance://pgsql psql -d postgres -p 55432
+    psql (12.0)
+    Type "help" for help.
+    
+    postgres=# alter role "<スクリプトの実行ユーザー>" with password '<パスワード>';
+    ALTER ROLE
+    postgres=# \q
