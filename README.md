@@ -56,7 +56,7 @@ Singularity Hubに登録されたイメージをダウンロードする場合�
 
 ## PostgreSQLデータベースのスーパーユーザーのパスワード設定
 
-singularity instanceを起動したユーザーがPostgreSQLデータベースのスーパーユーザーに設定されています。スーパーユーザーのパスワードを設定します。
+singularity instanceを起動したユーザー（initdbを実行したユーザー）がPostgreSQLデータベースのスーパーユーザーに設定されています。スーパーユーザーのパスワードを設定します。
 
     $ singularity exec instance://pgsql psql -d postgres -p 55432
     psql (12.0)
