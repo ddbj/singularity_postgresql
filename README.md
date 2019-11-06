@@ -18,9 +18,9 @@ Singularity Hubに登録されたイメージをダウンロードする場合�
     $ cd singularity_postgresql
     $ singularity pull --name ubuntu-18.04-postgresql-12.0.simg shub://ddbj/singularity_postgresql:12.0
 
-## PostgreSQLデータベースの初期化
+## PostgreSQLデータベースクラスターの初期化
 
-生成またはダウンロードしたイメージだけではPostgreSQLデータベースを実行できません。 start_container.shを実行してsingularity instanceを起動し、データベースの初期化を行います。シェルスクリプトの実行前に、自分の環境に合わせて start_container.sh の CONTAINER_HOME, IMAGE, INSTANCE, PORT変数を修正してください。シェルスクリプトを実行すると、初回実行時には以下のようにデータベースの初期化が行われた後でデータベースサーバが起動します。
+生成またはダウンロードしたイメージだけではPostgreSQLデータベースを実行できません。 start_container.shを実行してsingularity instanceを起動し、データベースクラスターの初期化を行います。シェルスクリプトの実行前に、自分の環境に合わせて start_container.sh の CONTAINER_HOME, IMAGE, INSTANCE, PORT変数を修正してください。PORT変数は5000以上で任意の整数を指定してください。シェルスクリプトを実行すると、初回実行時には以下のようにデータベースの初期化が行われた後でデータベースサーバが起動します。
 
     $ bash start_container.sh
     The files belonging to this database system will be owned by user "<スクリプトの実行ユーザー>".
