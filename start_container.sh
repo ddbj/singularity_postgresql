@@ -1,6 +1,10 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 CONTAINER_HOME="/home/y-okuda/git/singularity_postgresql"
+=======
+CONTAINER_HOME="/home/user/singularity_postgresql"
+>>>>>>> 0809e3ff618f4d74c079f3c1c9a029e3446a8d35
 IMAGE="ubuntu-18.04-postgresql-12.0.simg"
 INSTANCE="pgsql"
 PORT="55432"
@@ -34,5 +38,13 @@ singularity instance.start \
 ${CONTAINER_HOME}/${IMAGE} \
 ${INSTANCE}
 
+<<<<<<< HEAD
 # postgresqlサーバ起動
 singularity exec instance://${INSTANCE} pg_ctl -D /usr/local/pgsql12/data -l /usr/local/pgsql12/logs/logfile -o "-p ${PORT}" start
+=======
+if [ ! -e ${CONTAINER_HOME}/pgsql_data/db_data ]; then
+    singularity exec instance://${INSTANCE} initdb -D /usr/local/pgsql12/data/db_data --encoding=UTF-8 --no-locale
+fi
+
+singularity exec instance://${INSTANCE} pg_ctl -D /usr/local/pgsql12/data/db_data -l /usr/local/pgsql12/logs/logfile -o "-p ${PORT}" start
+>>>>>>> 0809e3ff618f4d74c079f3c1c9a029e3446a8d35
