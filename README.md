@@ -65,3 +65,31 @@ singularity instanceを起動したユーザーがPostgreSQLデータベース�
     postgres=# alter role "<スクリプトの実行ユーザー>" with password '<パスワード>';
     ALTER ROLE
     postgres=# \q
+
+## PostgreSQLデータベースの使用
+
+パスワードの設定によりsingularity instanceの外からデータベースにアクセスできるようになります。
+
+    $ psql -d postgres -p 55432 -h at043
+    パスワード: 
+    psql (9.2.24, サーバー 12.0)
+    注意： psql バージョン 9.2, サーバーバージョン 12.0.
+             psql の機能の中で、動作しないものがあるかもしれません。
+    "help" でヘルプを表示します.
+    
+    postgres=# 
+
+別ノードからのアクセスも可能です。
+
+    $ ssh at044
+    Last login: Fri Nov  1 20:25:26 2019 from at043
+    $ psql -d postgres -p 55432 -h at043
+    パスワード: 
+    psql (9.2.24, サーバー 12.0)
+    注意： psql バージョン 9.2, サーバーバージョン 12.0.
+             psql の機能の中で、動作しないものがあるかもしれません。
+    "help" でヘルプを表示します.
+    
+    postgres=# 
+
+ここで提供しているpg_hba.confの記述ではアクセス可能なIPアドレスに制限がかかっていません。必要に応じて修正してください。
