@@ -21,7 +21,6 @@ From: ubuntu:18.04
 
     apt-get -y install vim wget less
 
-
     # install MySQL
     apt-get -y install build-essential make gcc libreadline-dev zlib1g-dev libperl-dev libpython2.7-dev libpython3-dev gettext libssl-dev libxml2-dev libxslt1-dev
     useradd user1
