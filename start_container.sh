@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CONTAINER_HOME="/home/okuda/git/singularity_postgresql"
-IMAGE="ubuntu-18.04-postgresql-9.6.15.simg"
+CONTAINER_HOME="/home/user/singularity_postgresql"
+IMAGE="ubuntu-18.04-postgresql-12.0.simg"
 INSTANCE="pgsql"
 PORT="55432"
 
