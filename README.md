@@ -2,21 +2,28 @@
 
 遺伝研スパコンでユーザー権限でPostgreSQLデータベースを実行するためのsingularity imageの使い方
 
+対応するPostgreSQLのバージョン
+- 9.6.15
+- 10.10
+- 11.5
+- 12.0
+
 ## imageの生成
 
-自分の環境でimageをbuildする場合は、以下のコマンドを実行します。
+自分の環境でimageをbuildする場合は、以下のコマンドを実行します。PostgreSQLのバージョンには9.6.15, 10.10, 11.5, 12.0のいずれかを指定してください。
 
     $ git clone https://github.com/ddbj/singularity_postgresql.git
     $ cd singularity_postgresql
-    $ sudo singularity build ubuntu-18.04-postgresql-12.0.simg Singularity.12.0
+    $ sudo singularity build ubuntu-18.04-postgresql-<PostgreSQLのバージョン>.simg Singularity.<PostgreSQLのバージョン>
 
 ## imageのダウンロード
 
-Singularity Hubに登録されたイメージをダウンロードする場合は以下のコマンドを実行します。
+Singularity Hubに登録されたイメージをダウンロードする場合は以下のコマンドを実行します。PostgreSQLのバージョンには9.6.15, 10.10, 11.5, 12.0のいずれかを指定してください。
+
 
     $ git clone https://github.com/ddbj/singularity_postgresql.git
     $ cd singularity_postgresql
-    $ singularity pull --name ubuntu-18.04-postgresql-12.0.simg shub://ddbj/singularity_postgresql:12.0
+    $ singularity pull --name ubuntu-18.04-postgresql-<PostgreSQLのバージョン>.simg shub://ddbj/singularity_postgresql:<PostgreSQLのバージョン>
 
 ## PostgreSQLデータベースクラスターの初期化
 
