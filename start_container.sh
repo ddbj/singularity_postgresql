@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CONTAINER_HOME="/home/user/singularity_postgresql"
-IMAGE="ubuntu-18.04-postgresql-12.0.simg"
+CONTAINER_HOME="/home/okuda/git/singularity_postgresql"
+IMAGE="ubuntu-18.04-postgresql-9.6.15.simg"
 INSTANCE="pgsql"
 PORT="55432"
 
@@ -14,11 +14,11 @@ fi
 if [ ! -e ${CONTAINER_HOME}/data ]; then
     mkdir ${CONTAINER_HOME}/data
     singularity instance.start \
-    -B ${CONTAINER_HOME}/data:/usr/local/pgsql12/data \
-    -B ${CONTAINER_HOME}/logs:/usr/local/pgsql12/logs \
+    -B ${CONTAINER_HOME}/data:/usr/local/pgsql/data \
+    -B ${CONTAINER_HOME}/logs:/usr/local/pgsql/logs \
     ${CONTAINER_HOME}/${IMAGE} \
     ${INSTANCE}
-    singularity exec instance://${INSTANCE} initdb -D /usr/local/pgsql12/data --encoding=UTF-8 --no-locale
+    singularity exec instance://${INSTANCE} initdb -D /usr/local/pgsql/data --encoding=UTF-8 --no-locale
     singularity instance.stop ${INSTANCE}
 
     # 設定ファイルのコピー
@@ -30,10 +30,10 @@ fi
 
 # instance起動
 singularity instance.start \
--B ${CONTAINER_HOME}/data:/usr/local/pgsql12/data \
--B ${CONTAINER_HOME}/logs:/usr/local/pgsql12/logs \
+-B ${CONTAINER_HOME}/data:/usr/local/pgsql/data \
+-B ${CONTAINER_HOME}/logs:/usr/local/pgsql/logs \
 ${CONTAINER_HOME}/${IMAGE} \
 ${INSTANCE}
 
 # postgresqlサーバ起動
-singularity exec instance://${INSTANCE} pg_ctl -D /usr/local/pgsql12/data -l /usr/local/pgsql12/logs/logfile -o "-p ${PORT}" start
+singularity exec instance://${INSTANCE} pg_ctl -D /usr/local/pgsql/data -l /usr/local/pgsql/logs/logfile -o "-p ${PORT}" start

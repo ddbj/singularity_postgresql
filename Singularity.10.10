@@ -26,9 +26,9 @@ From: ubuntu:18.04
     useradd user1
     chown user1 /usr/local/src
     cd /usr/local/src
-    su -c 'wget https://ftp.postgresql.org/pub/source/v12.0/postgresql-12.0.tar.gz' user1
-    su -c 'tar xzvf postgresql-12.0.tar.gz' user1
-    cd postgresql-12.0
+    su -c 'wget https://ftp.postgresql.org/pub/source/v10.10/postgresql-10.10.tar.gz' user1
+    su -c 'tar xzvf postgresql-10.10.tar.gz' user1
+    cd postgresql-10.10
     su -c './configure --with-openssl --with-libxml --with-libxslt --with-perl --with-python --prefix=/usr/local/pgsql' user1
     su -c 'make world' user1
     su -c 'make check' user1

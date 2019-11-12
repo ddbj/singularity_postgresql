@@ -22,13 +22,13 @@ From: ubuntu:18.04
     apt-get -y install vim wget less
 
     # install MySQL
-    apt-get -y install make gcc libreadline-dev zlib1g-dev libperl-dev libpython2.7-dev libpython3-dev gettext libssl-dev libxml2-dev libxslt1-dev
+    apt-get -y install make gcc libreadline-dev zlib1g-dev libperl-dev python-all-dev gettext libssl-dev libxml2-dev libxslt1-dev
     useradd user1
     chown user1 /usr/local/src
     cd /usr/local/src
-    su -c 'wget https://ftp.postgresql.org/pub/source/v12.0/postgresql-12.0.tar.gz' user1
-    su -c 'tar xzvf postgresql-12.0.tar.gz' user1
-    cd postgresql-12.0
+    su -c 'wget https://ftp.postgresql.org/pub/source/v9.6.15/postgresql-9.6.15.tar.gz' user1
+    su -c 'tar xzvf postgresql-9.6.15.tar.gz' user1
+    cd postgresql-9.6.15
     su -c './configure --with-openssl --with-libxml --with-libxslt --with-perl --with-python --prefix=/usr/local/pgsql' user1
     su -c 'make world' user1
     su -c 'make check' user1
