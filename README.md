@@ -2,25 +2,39 @@
 
 遺伝研スパコンでユーザー権限でPostgreSQLデータベースを実行するためのsingularity imageの使い方
 
+対応するPostgreSQLのバージョン
+- 9.6.15
+- 10.10
+- 11.5
+- 12.0
+
 ## imageの生成
 
-自分の環境でimageをbuildする場合は、以下のコマンドを実行します。
+自分の環境でimageをbuildする場合は、以下のコマンドを実行します。PostgreSQLのバージョンには9.6.15, 10.10, 11.5, 12.0のいずれかを指定してください。
 
     $ git clone https://github.com/ddbj/singularity_postgresql.git
     $ cd singularity_postgresql
-    $ sudo singularity build ubuntu-18.04-postgresql-12.0.simg Singularity.12.0
+    $ sudo singularity build ubuntu-18.04-postgresql-<PostgreSQLのバージョン>.simg Singularity.<PostgreSQLのバージョン>
 
 ## imageのダウンロード
 
-Singularity Hubに登録されたイメージをダウンロードする場合は以下のコマンドを実行します。
+Singularity Hubに登録されたイメージをダウンロードする場合は以下のコマンドを実行します。PostgreSQLのバージョンには9.6.15, 10.10, 11.5, 12.0のいずれかを指定してください。
+
 
     $ git clone https://github.com/ddbj/singularity_postgresql.git
     $ cd singularity_postgresql
-    $ singularity pull --name ubuntu-18.04-postgresql-12.0.simg shub://ddbj/singularity_postgresql:12.0
+    $ singularity pull --name ubuntu-18.04-postgresql-<PostgreSQLのバージョン>.simg shub://ddbj/singularity_postgresql:<PostgreSQLのバージョン>
 
 ## PostgreSQLデータベースクラスターの初期化
 
-生成またはダウンロードしたイメージだけではPostgreSQLデータベースを実行できません。 start_container.shを実行してsingularity instanceを起動し、データベースクラスターの初期化を行います。シェルスクリプトの実行前に、自分の環境に合わせて start_container.sh の CONTAINER_HOME, IMAGE, INSTANCE, PORT変数を修正してください。PORT変数は5000以上で任意の整数を指定してください。シェルスクリプトを実行すると、初回実行時には以下のようにデータベースの初期化が行われた後でデータベースサーバが起動します。
+生成またはダウンロードしたイメージだけではPostgreSQLデータベースを実行できません。 start_container.shを実行してsingularity instanceを起動し、データベースクラスターの初期化を行います。
+シェルスクリプトの実行前に、自分の環境に合わせて start_container.sh の CONTAINER_HOME, IMAGE, INSTANCE, PORT変数を修正してください。
+
+- CONTAINER_HOMEにはgit cloneでできたディレクトリのフルパスを記載してください。
+- IMAGEには、image生成またはダウンロードの際に指定したファイル名を記載してください。
+- PORT変数は5000以上で任意の整数を指定してください。
+
+シェルスクリプトを実行すると、初回実行時には以下のようにデータベースの初期化が行われた後でデータベースサーバが起動します。
 
     $ bash start_container.sh
     The files belonging to this database system will be owned by user "<スクリプトの実行ユーザー>".
