@@ -29,7 +29,11 @@ Singularity Hubに登録されたイメージをダウンロードする場合�
 
 生成またはダウンロードしたイメージだけではPostgreSQLデータベースを実行できません。 start_container.shを実行してsingularity instanceを起動し、データベースクラスターの初期化を行います。
 シェルスクリプトの実行前に、自分の環境に合わせて start_container.sh の CONTAINER_HOME, IMAGE, INSTANCE, PORT変数を修正してください。
-CONTAINER_HOMEにはgit cloneでできたディレクトリのフルパスを記載してください。IMAGEには、image生成またはダウンロードの際に指定したファイル名を記載してください。PORT変数は5000以上で任意の整数を指定してください。
+
+- CONTAINER_HOMEにはgit cloneでできたディレクトリのフルパスを記載してください。
+- IMAGEには、image生成またはダウンロードの際に指定したファイル名を記載してください。
+- PORT変数は5000以上で任意の整数を指定してください。
+
 シェルスクリプトを実行すると、初回実行時には以下のようにデータベースの初期化が行われた後でデータベースサーバが起動します。
 
     $ bash start_container.sh
